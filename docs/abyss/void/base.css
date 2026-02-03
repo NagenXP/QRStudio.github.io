@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
 :root {
   --bg: #0b1220;
   --panel: #0f172a;
@@ -9,8 +11,6 @@
   --card: #111a2d;
   --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
 
 *,
 *::before,
@@ -209,16 +209,33 @@ h3 {
   cursor: pointer;
   user-select: none;
   transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
 }
 
-.pill input {
-  display: none;
+.pill input,
+.checkbox input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
+  opacity: 0;
 }
 
 .pill.active {
   border-color: var(--accent);
   background: color-mix(in srgb, var(--accent) 18%, var(--card));
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.pill:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 .content-section {
@@ -263,12 +280,12 @@ h3 {
 }
 
 /* keep the Style selector from stretching full width */
-label.field:has(#qrStyle) {
+.qr-style-field {
   width: fit-content;
   max-width: 260px;
 }
 
-.style-row label.field:has(#qrStyle) {
+.style-row .qr-style-field {
   width: 100%;
   max-width: none;
 }
@@ -381,14 +398,11 @@ label.field:has(#qrStyle) {
   font-size: 14px;
   color: var(--text);
   padding: 8px 6px;
+  position: relative;
 }
 
 .checkbox.inline {
   padding: 6px 0 0;
-}
-
-.checkbox input {
-  display: none;
 }
 
 .checkbox__box {
@@ -398,6 +412,11 @@ label.field:has(#qrStyle) {
   border: 1px solid var(--border);
   background: var(--card);
   position: relative;
+}
+
+.checkbox:focus-within .checkbox__box {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .checkbox input:checked + .checkbox__box {
