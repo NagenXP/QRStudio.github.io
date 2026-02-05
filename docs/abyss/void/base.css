@@ -578,7 +578,7 @@ h3 {
   color: #fca5a5;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .app {
     grid-template-columns: 1fr;
   }
